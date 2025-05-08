@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout" layout:decorate="~{admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Thêm Sản Phẩm</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="admin_content">
+	<div class="container">
+		<h2 class="mt-2">Chi tiết sản phẩm</h2>
+		<div th:object="${product}">
+			<p>
+				Tên sản phẩm: <span th:text="*{productName}"></span>
+			</p>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

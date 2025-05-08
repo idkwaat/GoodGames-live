@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout" layout:decorate="~{admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+	<div layout:fragment="admin_content">
+		<div class="container">
+<h2 class="mt-4">DANH SÁCH DANH MỤC</h2>
+<p><a th:href="@{/danh-muc/them-moi}" class="btn btn-success">Thêm danh mục</a></p>
+<table class="table table-bordered mt-2">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+            <th>Trạng thái</th>
+            <th>Danh mục cha</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cat : ${categories}">
+            <td th:text="${cat.categoryId}"></td>
+            <td th:text="${cat.categoryName}"></td>
+            <td th:text="${cat.status ? 'Hoạt động' : 'Không'}"></td>
+            <td th:text="${cat.parent != null ? cat.parent.categoryName : '---'}"></td>
+            <td>
+                <a th:href="@{'/danh-muc/chi-tiet/' + ${cat.categoryId}}" class="btn btn-info btn-sm">Chi tiết</a>
+                <a th:href="@{'/danh-muc/sua/' + ${cat.categoryId}}" class="btn btn-warning btn-sm">Sửa</a>
+                <a th:href="@{'/danh-muc/xoa/' + ${cat.categoryId}}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+                    
+		<h2 class="mt-2">DANH SÁCH SẢN PHẨM</h2>
+		
+		<p><a th:href="@{/san-pham/them-moi}" class="btn btn-primary">Thêm mới</a></p>
+		<div>
+		</div>
+		<table class="table table-bordered mt-2">
+			<tr>
+				<th>Mã số</th>
+				<th>Tên</th>
+				<th>Giá</th>
+				<th>Hãng</th>
+				<th>Mô tả</th>
+				<th>Tình trạng</th>
+				<th></th>
+			</tr>
+			<tr th:each="p:${products}" th:object="${p}">
+				<td th:text="*{productId}"></td>
+				<td th:text="*{productName}"></td>
+				<td th:text="*{price}"></td>
+				<td th:text="*{brand}"></td>
+				<td th:text="*{description}"></td>
+				<td th:text="*{active?'Còn hàng':'Hết hàng'}"></td>
+				<td>
+					<a th:href="@{/san-pham/xoa/{id}(id=*{productId})}" onclick="return confirm('Bán có muốn xóa không?')" class="btn btn-danger">Xóa</a>
+					<a th:href="@{/san-pham/sua/{id}(id=*{productId})}" class="btn btn-info">Sửa</a>
+					<a th:href="@{/san-pham/chi-tiet/{id}(id=*{productId})}" class="btn btn-success">Chi tiết</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+                    
+</body>
+</html>

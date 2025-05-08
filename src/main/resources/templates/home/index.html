@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html layout:decorate="~{home_layout}" xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout">
+<head>
+    <title>Trang chủ</title>
+</head>
+<body>
+    <div layout:fragment="page_content">
+        <div class="nk-main">
+        
+            <div class="nk-gap-2"></div>
+        
+
+        
+<div class="container">
+
+    <!-- START: Image Slider -->
+    <div th:replace="~{home/fragments/image_slider::image_slider}"></div>
+    <!-- END: Image Slider -->
+
+    <!-- START: Categories -->
+    <div th:replace="~{home/fragments/categories::categories}"></div>
+    <!-- END: Categories -->
+
+    <!-- START: Latest News -->
+    <div th:replace="~{home/fragments/latest_news::latest_news}"></div>
+    <!-- END: Latest News -->
+	
+    <div class="nk-gap-2"></div>
+    <div class="row vertical-gap">
+        <div class="col-lg-8">
+
+            <!-- START: Latest Posts -->
+            <div th:replace="~{home/fragments/latest_posts::latest_posts}"></div>
+            <!-- END: Latest Posts -->
+
+            <!-- START: Latest Matches -->
+            <div th:replace="~{home/fragments/latest_matches::latest_matches}"></div>
+            <!-- END: Latest Matches -->
+
+            <!-- START: Tabbed News  -->
+            <div th:replace="~{home/fragments/tabbed_news::tabbed_news}"></div>
+            <!-- END: Tabbed News -->
+
+
+            <!-- START: Latest Pictures -->
+            <div th:replace="~{home/fragments/latest_pictures::latest_pictures}"></div>
+            <!-- END: Latest Pictures -->
+
+            <!-- START: Best Selling -->
+            <div th:replace="~{home/fragments/best_selling::best_selling}"></div>
+            <!-- END: Best Selling -->
+        </div>
+        <div class="col-lg-4">
+            <!--
+                START: Sidebar
+
+                Additional Classes:
+                    .nk-sidebar-left
+                    .nk-sidebar-right
+                    .nk-sidebar-sticky
+            -->
+            <div th:replace="~{home/fragments/side_bar::side_bar}"></div>
+            <!-- END: Sidebar -->
+        </div>
+    </div>
+</div>
+
+<div class="nk-gap-4"></div>
+
+        
+        <!--Page Background-->
+        <img class="nk-page-background-top" src="assets/images/bg-top.png" alt="">
+    	<img class="nk-page-background-bottom" src="assets/images/bg-bottom.png" alt="">
+        </div>
+    </div>
+    </div>
+</body>
+</html>

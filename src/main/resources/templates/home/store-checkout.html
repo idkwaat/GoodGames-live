@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html layout:decorate="~{home_layout}"
+	xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout">
+<head>
+<title>Trang chủ</title>
+</head>
+<body>
+	<div layout:fragment="page_content">
+		<div class="nk-main">
+
+			<div class="nk-gap-2"></div>
+
+
+
+			<div class="container">
+
+
+
+
+
+
+				<!-- START: Breadcrumbs -->
+				<div class="nk-gap-1"></div>
+				<div class="container">
+					<ul class="nk-breadcrumbs">
+
+
+						<li><a href="index.html">Home</a></li>
+
+
+						<li><span class="fa fa-angle-right"></span></li>
+
+						<li><a href="store.html">Store</a></li>
+
+
+						<li><span class="fa fa-angle-right"></span></li>
+
+						<li><a href="store-cart.html">Cart</a></li>
+
+
+						<li><span class="fa fa-angle-right"></span></li>
+
+						<li><span>Checkout</span></li>
+
+					</ul>
+				</div>
+				<div class="nk-gap-1"></div>
+				<!-- END: Breadcrumbs -->
+
+
+
+
+				<div class="container">
+
+					<div class="nk-store nk-store-checkout">
+						<h3 class="nk-decorated-h-2">
+							<span><span class="text-main-1">Billing</span> Details</span>
+						</h3>
+
+						<!-- START: Billing Details -->
+						<div class="nk-gap"></div>
+						<form th:action="@{/checkout}" th:object="${acc}" method="post"
+							class="nk-form">
+							<div class="row vertical-gap">
+								<div class="col-lg-6">
+									<div class="row vertical-gap">
+										<div class="col-sm-6">
+											<label for="receivename">First Name <span
+												class="text-main-1">*</span>:
+											</label> <input type="text" th:field="*{firstname}"
+												class="form-control required" name="receivename"
+												id="receivename" readonly>
+										</div>
+										<div class="col-sm-6">
+											<label for="lname">Last Name <span
+												class="text-main-1">*</span>:
+											</label> <input type="text" th:field="*{lastname}"
+												class="form-control required" id="lname" readonly>
+										</div>
+									</div>
+
+									<div class="nk-gap-1"></div>
+									<label for="company">Company Name:</label> <input type="text"
+										class="form-control" name="company" id="company">
+
+									<div class="nk-gap-1"></div>
+									<div class="row vertical-gap">
+										<div class="col-sm-6">
+											<label for="email">Email Address <span
+												class="text-main-1">*</span>:
+											</label> <input type="email" th:field="*{email}"
+												class="form-control required" id="email" readonly>
+										</div>
+										<div class="col-sm-6">
+											<label for="receivephone">Phone <span
+												class="text-main-1">*</span>:
+											</label> <input type="tel" class="form-control required"
+												name="receivephone" id="receivephone">
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col-lg-6">
+									<label for="receiveaddress">Address <span
+										class="text-main-1">*</span>:
+									</label> <input type="text" class="form-control required"
+										name="receiveaddress" id="receiveaddress">
+
+									<div class="nk-gap-1"></div>
+									<label for="city">Town / City <span class="text-main-1">*</span>:
+									</label> <input type="text" class="form-control required" name="city"
+										id="city">
+
+									<div class="nk-gap-1"></div>
+									<div class="row vertical-gap">
+										<div class="col-sm-6">
+											<label for="state">State / Country <span
+												class="text-main-1">*</span>:
+											</label> <input type="text" class="form-control required"
+												name="state" id="state">
+										</div>
+										<div class="col-sm-6">
+											<label for="zip">Postcode / ZIP <span
+												class="text-main-1">*</span>:
+											</label> <input type="tel" class="form-control required" name="zip"
+												id="zip">
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+
+							<!-- END: Billing Details -->
+
+
+							<div class="nk-gap-2"></div>
+							<div class="nk-gap-1"></div>
+							<label for="note">Order Notes:</label>
+							<textarea class="form-control" name="note" id="note"
+								placeholder="Order Notes" rows="6"></textarea>
+
+							<!-- START: Order Products -->
+							<div class="nk-gap-3"></div>
+							<h3 class="nk-decorated-h-2">
+								<span><span class="text-main-1">Your</span> Order</span>
+							</h3>
+							<div class="nk-gap"></div>
+							<div class="table-responsive">
+								<table class="nk-table nk-table-sm">
+									<thead class="thead-default">
+										<tr>
+											<th class="nk-product-cart-title">Product</th>
+											<th class="nk-product-cart-total">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="item : ${cartitems}" th:object="${item}">
+											<td th:text="*{productName}" class="nk-product-cart-title"></td>
+											<td th:text="*{price} + ' €'" class="nk-product-cart-total">€
+												0.00</td>
+										</tr>
+										<tr class="nk-store-cart-totals-subtotal">
+										</tr>
+										<tr class="nk-store-cart-totals-shipping">
+											<td>Shipping</td>
+											<td>Free Shipping</td>
+										</tr>
+										<tr class="nk-store-cart-totals-total" th:each="item : ${cartitems}" th:object="${item}">
+											<td>Total</td>
+											<td th:text="*{total} + ' €'"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- END: Order Products -->
+
+							<div class="nk-gap-2"></div>
+							<button type="submit"
+								class="nk-btn nk-btn-rounded nk-btn-color-main-1">Place
+								Order</button>
+					</div>
+				</div>
+				<div class="nk-gap-2"></div>
+				</form>
+
+
+
+
+			</div>
+
+
+
+
+			<!-- START: Page Background -->
+
+			<img class="nk-page-background-top" src="assets/images/bg-top-4.png"
+				alt=""> <img class="nk-page-background-bottom"
+				src="assets/images/bg-bottom.png" alt="">
+
+			<!-- END: Page Background -->
+
+
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">Quản
+	trị web</title>
+<link href="/assets/backend/vendor/fontawesome/css/fontawesome.min.css"
+	rel="stylesheet">
+<link href="/assets/backend/vendor/fontawesome/css/solid.min.css"
+	rel="stylesheet">
+<link href="/assets/backend/vendor/fontawesome/css/brands.min.css"
+	rel="stylesheet">
+<link href="/assets/backend/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/assets/backend/css/master.css" rel="stylesheet">
+<link href="/assets/backend/vendor/flagiconcss/css/flag-icon.min.css"
+	rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div th:replace="~{/backend/fragments/side_bar::sidebar}">Side
+			bar</div>
+		<div id="body" class="active">
+			<!-- navbar navigation component -->
+			<div th:replace="~{/backend/fragments/nav_bar::navbar}">Nav bar
+			</div>
+			<!-- end of navbar navigation -->
+			<div layout:fragment="admin_content" class="content"></div>
+		</div>
+	</div>
+	<script src="/assets/backend/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="/assets/backend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/backend/vendor/chartsjs/Chart.min.js"></script>
+	<script src="/assets/backend/js/dashboard-charts.js"></script>
+	<script src="/assets/backend/js/script.js"></script>
+</body>
+
+</html>

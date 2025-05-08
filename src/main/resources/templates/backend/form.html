@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout" layout:decorate="~{admin_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+</head>
+<body>
+<div layout:fragment="admin_content">
+    <div class="container">
+        <h2 class="mb-4">Tất cả đơn hàng</h2>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Mã đơn</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật trạng thái</th>
+                <th>Mã sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.orderId}"></td>
+                <td th:text="${order.orderDate}"></td>
+                <!-- Hiển thị trạng thái -->
+                <td th:text="${order.status == 0 ? 'Chờ xử lý' : (order.status == 1 ? 'Đang giao' : (order.status == 2 ? 'Hoàn thành' : 'Đã hủy'))}"></td>
+
+                <!-- Form cập nhật trạng thái -->
+                <td>
+                    <form th:action="@{/forms.html/update-status}" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="orderId" th:value="${order.orderId}" />
+                        <select name="status" class="form-select">
+                            <option th:value="0" th:selected="${order.status == 0}">Chờ xử lý</option>
+                            <option th:value="1" th:selected="${order.status == 1}">Đang giao</option>
+                            <option th:value="2" th:selected="${order.status == 2}">Hoàn thành</option>
+                            <option th:value="3" th:selected="${order.status == 3}">Đã hủy</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
+                    </form>
+                </td>
+
+                <td th:text="${order.productId}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.price} + ' đ'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

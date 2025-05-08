@@ -1,0 +1,83 @@
+<div th:fragment="register_modal" class="nk-modal modal fade"
+	id="modalRegister" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span class="ion-android-close"></span>
+				</button>
+
+				<h4 class="mb-0">
+					<span class="text-main-1">Sign</span> Up
+				</h4>
+
+				<div class="nk-gap-1"></div>
+				<form th:action="@{/register}" th:object="${user}" method="post"
+					class="nk-form text-white">
+
+					<div class="nk-gap"></div>
+					<input type="text" th:field="*{firstname}" class="form-control"
+						placeholder="First Name">
+					<div th:if="${#fields.hasErrors('firstname')}" class="text-danger"
+						th:errors="*{firstname}"></div>
+
+					<div class="nk-gap"></div>
+					<input type="text" th:field="*{lastname}" class="form-control"
+						placeholder="Last Name">
+					<div th:if="${#fields.hasErrors('lastname')}" class="text-danger"
+						th:errors="*{lastname}"></div>
+
+					<div class="nk-gap"></div>
+					<input type="email" th:field="*{email}" class="form-control"
+						placeholder="Email">
+					<div th:if="${#fields.hasErrors('email')}" class="text-danger"
+						th:errors="*{email}"></div>
+
+					<div class="nk-gap"></div>
+					<input type="text" th:field="*{username}" class="form-control"
+						placeholder="Username">
+					<div th:if="${#fields.hasErrors('username')}" class="text-danger"
+						th:errors="*{username}"></div>
+
+					<div class="nk-gap"></div>
+					<input type="password" th:field="*{password}" class="form-control"
+						placeholder="Password">
+					<div th:if="${#fields.hasErrors('password')}" class="text-danger"
+						th:errors="*{password}"></div>
+
+					<div class="nk-gap"></div>
+					<input type="password" th:field="*{repassword}"
+						class="form-control" placeholder="Repeat Password">
+					<div th:if="${#fields.hasErrors('repassword')}" class="text-danger"
+						th:errors="*{repassword}"></div>
+
+					<div class="nk-gap-1"></div>
+					<button type="submit"
+						class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-block">Sign
+						Up</button>
+				</form>
+
+
+
+				<div class="nk-gap"></div>
+				<div class="text-center">
+					<small>Or sign up using social networks</small>
+					<ul class="nk-social-links-2 mt-2">
+						<li><a class="nk-social-facebook" href="#"><span
+								class="fab fa-facebook"></span></a></li>
+						<li><a class="nk-social-google-plus" href="#"><span
+								class="fab fa-google-plus"></span></a></li>
+						<li><a class="nk-social-twitter" href="#"><span
+								class="fab fa-twitter"></span></a></li>
+					</ul>
+
+					<div class="nk-gap"></div>
+					<small>Already have an account? <a href="#"
+						data-toggle="modal" data-target="#modalLogin" data-dismiss="modal">Sign
+							in</a></small>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

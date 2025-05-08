@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Thêm Sản Phẩm</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="admin_content">
+<div class="container mt-4">
+    <h2>Cập nhật danh mục</h2>
+    <form th:action="@{/danh-muc/cap-nhat}" th:object="${category}" method="post">
+        <input type="hidden" th:field="*{categoryId}"/>
+        <div class="mb-3">
+            <label class="form-label">Tên danh mục</label>
+            <input type="text" class="form-control" th:field="*{categoryName}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Trạng thái</label>
+            <select class="form-control" th:field="*{status}">
+                <option th:value="true">Hoạt động</option>
+                <option th:value="false">Không hoạt động</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Danh mục cha</label>
+            <select class="form-control" th:field="*{parent}" required="false">
+                <option th:value="">-- Không chọn --</option>
+                <option th:each="p : ${allCategories}" th:value="${p}" th:text="${p.categoryName}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+        <a th:href="@{/danh-muc}" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
+</div>
+</body>
+</html>

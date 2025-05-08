@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Thêm Sản Phẩm</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="admin_content">
+<div class="container mt-4">
+    <h2>Chi tiết danh mục</h2>
+    <table class="table table-bordered">
+        <tr><th>ID</th><td th:text="${category.categoryId}"></td></tr>
+        <tr><th>Tên danh mục</th><td th:text="${category.categoryName}"></td></tr>
+        <tr><th>Trạng thái</th><td th:text="${category.status ? 'Hoạt động' : 'Không'}"></td></tr>
+        <tr><th>Danh mục cha</th><td th:text="${category.parent != null ? category.parent.categoryName : '---'}"></td></tr>
+    </table>
+    <a th:href="@{/danh-muc}" class="btn btn-secondary">Quay lại</a>
+</div>
+</div>
+</body>
+</html>

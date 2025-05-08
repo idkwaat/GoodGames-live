@@ -1,0 +1,6 @@
+/* PLACE YOU CUSTOM STYLES IN THIS FILE */
+input[readonly] {
+    background-color: gray !important;
+    border: 1px solid #ccc;
+    cursor: default;
+}

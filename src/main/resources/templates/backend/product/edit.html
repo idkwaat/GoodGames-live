@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout" layout:decorate="~{admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Thêm Sản Phẩm</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="admin_content">
+<div class="container mt-5">
+        <h1>Sửa mới sản phẩm</h1>
+        
+        <form th:action="@{/san-pham/cap-nhat}" th:object="${product}" method="post">
+            <input type="hidden" th:field="*{productId}"/>
+            <!-- Product Name -->
+            <div class="form-group">
+                <label for="productName">Tên sản phẩm</label>
+                <input type="text" class="form-control" id="productName" th:field="*{productName}" />
+                <div th:if="${#fields.hasErrors('productName')}" class="text-danger">
+                    <ul th:errors="*{productName}"></ul>
+                </div>
+            </div>
+            
+            <!-- Price -->
+            <div class="form-group">
+                <label for="price">Giá</label>
+                <input type="number" class="form-control" id="price" th:field="*{price}" step="0.01" />
+                <div th:if="${#fields.hasErrors('price')}" class="text-danger">
+                    <ul th:errors="*{price}"></ul>
+                </div>
+            </div>
+            
+            <!-- Brand -->
+            <div class="form-group">
+                <label for="brand">Thương hiệu</label>
+                <input type="text" class="form-control" id="brand" th:field="*{brand}" />
+                <div th:if="${#fields.hasErrors('brand')}" class="text-danger">
+                    <ul th:errors="*{brand}"></ul>
+                </div>
+            </div>
+            
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Mô tả</label>
+                <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+                <div th:if="${#fields.hasErrors('description')}" class="text-danger">
+                    <ul th:errors="*{description}"></ul>
+                </div>
+            </div>
+            
+            <!-- Active -->
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="active" th:field="*{active}" />
+                <label class="form-check-label" for="active">Còn hàng</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary"> Cập nhật </button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
